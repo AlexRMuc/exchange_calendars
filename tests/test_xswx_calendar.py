@@ -31,4 +31,41 @@ class TestIXSWXCalendar(ExchangeCalendarTestBase):
             "2012-12-25",  # Christmas
             "2012-12-26",  # Boxing Day
             "2012-12-31",  # New Year's Eve
+            #
+            # Berchtold's Day, observed until 2001 and again from 2003
+            "2001-01-02",
+            "2003-01-02",
+            #
+            # Ascension Day and Whit Monday, observed until 2001 and again
+            # from 2003
+            "2001-05-24",  # Ascension Day
+            "2001-06-04",  # Whit Monday
+            "2003-05-29",  # Ascension Day
+            "2003-06-09",  # Whit Monday
+            #
+            # Swiss National Day, observed until 2000 and again from 2006
+            "2000-08-01",
+            "2006-08-01",
+        ]
+
+    @pytest.fixture
+    def non_holidays_sample(self):
+        yield [
+            # Berchtold's Day, Ascension Day and Whit Monday were trading
+            # days in 2002
+            "2002-01-02",
+            "2002-05-09",  # Ascension Day
+            "2002-05-20",  # Whit Monday
+            #
+            # Swiss National Day was a trading day from 2001 through 2005
+            "2001-08-01",
+            "2002-08-01",
+            "2003-08-01",
+            "2005-08-01",
+        ]
+
+    @pytest.fixture
+    def adhoc_holidays_sample(self):
+        yield [
+            "2000-01-03",  # Year 2000 changeover
         ]
