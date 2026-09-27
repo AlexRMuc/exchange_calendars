@@ -69,6 +69,12 @@ from .exchange_calendar import HolidayCalendar, ExchangeCalendar
 #       apply": 1 and 2 January, Good Friday, Easter Monday, 1 May, Ascension
 #       Day, Whit Monday, 1 August, 25 and 26 December
 #       http://web.archive.org/web/20060720021640/http://www.swx.com/swx_messages/2006/swx0906e.pdf
+#   [14] SIX Swiss Exchange daily price history of SIX-listed shares, as
+#       published by SIX (from 15 December 1997): traded volume on
+#       24 and 31 December 1997; no bar on 24 or 31 December 1998
+#       https://www.six-group.com/en/market-data/shares.html
+#   [15] Daily bars of an independent commercial data vendor: traded volume
+#       on 24 and 31 December 1996
 NewYearsDay = new_years_day()
 
 # Berchtold's Day was a trading day in 2002 only [3][4][5]. It was closed in
@@ -115,13 +121,20 @@ SwissNationalDayFrom2006 = Holiday(
     start_date="2006-01-01",
 )
 
-ChristmasEve = christmas_eve()
+# Christmas Eve and New Year's Eve were trading days in 1996 [15] and 1997
+# [14] and closed from 1998 [1][14]. No evidence was found for the years before
+# 1996, which keep both days as holidays.
+ChristmasEveUntil1995 = christmas_eve(end_date="1995-12-31")
+
+ChristmasEveFrom1998 = christmas_eve(start_date="1998-01-01")
 
 Christmas = christmas()
 
 BoxingDay = boxing_day()
 
-NewYearsEve = new_years_eve()
+NewYearsEveUntil1995 = new_years_eve(end_date="1995-12-31")
+
+NewYearsEveFrom1998 = new_years_eve(start_date="1998-01-01")
 
 # Ad-hoc Holidays
 # ---------------
@@ -146,10 +159,10 @@ class XSWXExchangeCalendar(ExchangeCalendar):
     - Ascension Day (not observed in 2002)
     - Whit Monday (not observed in 2002)
     - Swiss National Day (not observed 2001 through 2005)
-    - Christmas Eve
+    - Christmas Eve (not observed in 1996 and 1997)
     - Christmas Day
     - Boxing Day
-    - New Year's Eve
+    - New Year's Eve (not observed in 1996 and 1997)
 
     Ad-hoc Holidays:
     - 3 January 2000 (year 2000 changeover)
@@ -179,10 +192,12 @@ class XSWXExchangeCalendar(ExchangeCalendar):
                 WhitMondayFrom2003,
                 SwissNationalDayUntil2000,
                 SwissNationalDayFrom2006,
-                ChristmasEve,
+                ChristmasEveUntil1995,
+                ChristmasEveFrom1998,
                 Christmas,
                 BoxingDay,
-                NewYearsEve,
+                NewYearsEveUntil1995,
+                NewYearsEveFrom1998,
             ]
         )
 

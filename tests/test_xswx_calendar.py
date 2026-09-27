@@ -46,6 +46,13 @@ class TestIXSWXCalendar(ExchangeCalendarTestBase):
             # Swiss National Day, observed until 2000 and again from 2006
             "2000-08-01",
             "2006-08-01",
+            #
+            # Christmas Eve and New Year's Eve, observed until 1995 (both on a
+            # weekend in 1994 and 1995) and again from 1998
+            "1993-12-24",  # Christmas Eve
+            "1993-12-31",  # New Year's Eve
+            "1998-12-24",  # Christmas Eve
+            "1998-12-31",  # New Year's Eve
         ]
 
     @pytest.fixture
@@ -62,6 +69,13 @@ class TestIXSWXCalendar(ExchangeCalendarTestBase):
             "2002-08-01",
             "2003-08-01",
             "2005-08-01",
+            #
+            # Christmas Eve and New Year's Eve were trading days in 1996 and
+            # 1997
+            "1996-12-24",
+            "1996-12-31",
+            "1997-12-24",
+            "1997-12-31",
         ]
 
     @pytest.fixture
